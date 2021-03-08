@@ -3,40 +3,40 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/bootstrap-alert.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="container h-200">
-        {% if messages %}
-            <div class="row h-100 justify-content-center align-items-center">
-                <div class="col-sm-6 col-sm-offset-3">
-                    {% for message in messages %}
-                        <div class="alert {{ message.tags }}" role="alert">
-                            <p>{{ message }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-       
+    <div class="container h-200 form-margin">
         <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-10 col-md-10 col-lg-6">
-                <!-- Form -->
-                <form class="form-example" action="{% url 'register:register-phone' reset=flag %}" data-url="{% url 'register:validate-otp' reset_to_password=0%}" method="post" id="registerPhoneForm">
-                    {% csrf_token %}
-                    <h1>Register</h1>
-
-                    <p class="description">Please enter the following details for user regsitration.</p>
-                    <!-- Input fields -->
-                    <hr>
-                    <br>
-                    {% for field in form %}
-                        <div class="form-group">
-                            <label>{{field.label}}:</label>
-                            {{ field }}
+            <div class="col-12 col-md-12 col-lg-6">
+                {% if messages %}
+                    <div class="row h-100 justify-content-center align-items-center">
+                        <div class="col-sm-12 col-sm-offset-3">
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }}" role="alert">
+                                    <p>{{ message }}</p>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary btn-customized mb-2" id="register_phone">Submit</button>
-                    <!-- End input fields -->
+                    </div>
+                {% endif %}
+                <!-- Form -->
+                <form class="form-example" action="{% url 'register:register-phone' %}" data-url="{% url 'register:validate-otp' %}" method="post" id="registerPhoneForm">
+                    {% csrf_token %}
+                        <h1>Register</h1>
+
+                        <p class="description">Please enter the following details for user regsitration.</p>
+                        <!-- Input fields -->
+                        <hr>
+                        <br>
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label>{{field.label}}:</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary btn-customized mb-2" id="register_phone">Submit</button>
+                        <!-- End input fields -->
                 </form>
                 <!-- Form end -->
             </div>

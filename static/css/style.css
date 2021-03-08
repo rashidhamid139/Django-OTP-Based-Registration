@@ -4,10 +4,9 @@ changewidth of login page
 */
 .col-lg-6 {
     -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 35%  !important;
-    max-width: 50%;
-    justify-content: center !important;
+    flex: 0 0 50%;
+    flex: 0 0 50%  !important;
+    max-width: 100%;
     margin-top: 10% !important;
     margin-bottom: 10% !important
 }
@@ -15,7 +14,7 @@ changewidth of login page
 .form-margin {
     -webkit-box-flex: 0;
     flex: 0 0 35%  !important;
-    max-width: 40%;
+    max-width: 50%;
     justify-content: center !important;
     margin-top: 10% !important;
     background: rgb(196, 196, 196);
@@ -23,4 +22,12 @@ changewidth of login page
 
 body {
     background: rgb(207, 206, 196)
+}
+
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin: auto;
 }

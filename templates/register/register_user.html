@@ -2,19 +2,19 @@
 
 {% block content %}
     <div class="container h-200">
-        {% if messages %}
-            <div class="row h-100 justify-content-center align-items-center">
-                <div class="col-sm-6 col-sm-offset-3">
-                    {% for message in messages %}
-                        <div class="alert {{ message.tags }}" role="alert">
-                            <p>{{ message }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-5 col-md-5 col-lg-6">
+                {% if messages %}
+                    <div class="row h-100 justify-content-center align-items-center">
+                        <div class="col-sm-12 col-sm-offset-3">
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }}" role="alert">
+                                    <p>{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
                 <!-- Form -->
                 <form class="form-example" data-url="{% url 'register:register-user' %}" method="post" id="registerPhoneForm">
                     {% csrf_token %}
@@ -30,7 +30,7 @@
                             {{ field }}
                         </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary btn-customized mb-2" id="register_phone">Validate</button>
+                    <button type="submit" class="btn btn-primary btn-customized mb-2" id="register_phone">Register</button>
                     <!-- End input fields -->
                 </form>
                 <!-- Form end -->

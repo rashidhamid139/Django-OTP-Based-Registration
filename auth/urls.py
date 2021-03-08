@@ -8,7 +8,6 @@ admin.site.site_header = "USER Admin"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('accounts.urls', namespace='account')),
     path('register/', include('register.urls', namespace='register')),
     path("login/", UserLogin, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -19,3 +18,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -26,7 +26,7 @@ SECRET_KEY = 'hzp=&riayvf7%q@9ke%jq8h8#1)6%#3e^c@z_xu6y7=g=q(%yf'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+import os
 from django.contrib.messages import constants as messages
 
 
@@ -34,7 +34,7 @@ MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
         messages.INFO: 'alert-info',
         messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
+        messages.WARNING: 'alert-danger',
         messages.ERROR: 'alert-danger',
  }
 # Application definition
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
     'rest_framework',
     'knox',
     'register',
@@ -137,7 +136,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = "static_root"
 
-AUTH_USER_MODEL ='accounts.User'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL ='register.User'
 
 
 REST_FRAMEWORK = {
@@ -147,9 +149,11 @@ REST_FRAMEWORK = {
 
 from datetime import timedelta
 REST_KNOX = {
-    'USER_SERIALIZER': 'accounts.serializers.UserSerializer',
+    'USER_SERIALIZER': 'register.serializers.UserSerializer',
     'TOKEN_TTL': timedelta(hours = 24*7),
 }
+
+LOGIN_URL = "/register/"
 
 LOGIN_REDIRECT_URL = "/register/"
 

@@ -3,24 +3,27 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/bootstrap-alert.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mbbootstrap/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mbbootstrap/googleapis.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mbbootstrap/mdb.min.css' %}">
 {% endblock %}
 {% block content %}
     <div class="container h-200 form-margin">
-        {% if messages %}
-            <div class="row h-100 justify-content-center align-items-center">
-                <div class="col-sm-6 col-sm-offset-3">
-                    {% for message in messages %}
-                        <div class="alert {{ message.tags }}" role="alert">
-                            <p>{{ message }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
         <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-10 col-md-10 col-lg-6">
+            <div class="col-12 col-md-12 col-lg-6">
+                {% if messages %}
+                    <div class="row h-100 justify-content-center align-items-center">
+                        <div class="col-sm-12 col-sm-offset-3">
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }}" role="alert">
+                                    <p>{{ message }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
                 <!-- Form -->
-                <form class="form-example" action="{% url 'login' %}" data-url="{% url 'register:validate-otp' reset_to_password=0 %}" method="post" id="registerPhoneForm">
+                <form class="form-example" action="{% url 'login' %}" data-url="{% url 'register:validate-otp'  %}" method="post" id="registerPhoneForm">
                 {% csrf_token %}
                     <h1>Login</h1>
 
@@ -35,7 +38,7 @@
                         </div>
                     {% endfor %}
                     <button type="submit" class="btn btn-primary btn-customized mb-2">Login</button>
-                    <a href="{% url 'register:register-phone'   reset=1 %}" class="mt-2" style="float: right;">Forgot Password?</a>
+                    <a href="{% url 'register:ajax-reset-password'  %}" class="mt-2" style="float: right;">Forgot Password?</a>
                     <!-- End input fields -->
                 </form>
                 <!-- Form end -->
@@ -46,4 +49,6 @@
 
 {% block scripts %}
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mbbootstrap/mdb.min.js' %}"></script>
+    <script src="{% static 'js/mbbootstrap/mdb_main.js' %}"></script>
 {% endblock %}
