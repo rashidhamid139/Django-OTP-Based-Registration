@@ -1,0 +1,49 @@
+{% load static %}
+{% include 'register/base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap-alert.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container h-200 form-margin">
+        {% if messages %}
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-sm-6 col-sm-offset-3">
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}" role="alert">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-10 col-md-10 col-lg-6">
+                <!-- Form -->
+                <form class="form-example" action="{% url 'login' %}" data-url="{% url 'register:validate-otp' reset_to_password=0 %}" method="post" id="registerPhoneForm">
+                {% csrf_token %}
+                    <h1>Login</h1>
+
+                    <p class="description">Please enter Your Phone Number and Password.</p>
+                    <!-- Input fields -->
+                    <hr>
+                    <br>
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label>{{field.label}}:</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary btn-customized mb-2">Login</button>
+                    <a href="{% url 'register:register-phone'   reset=1 %}" class="mt-2" style="float: right;">Forgot Password?</a>
+                    <!-- End input fields -->
+                </form>
+                <!-- Form end -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

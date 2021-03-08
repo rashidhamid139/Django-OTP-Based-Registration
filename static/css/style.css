@@ -1,0 +1,26 @@
+
+/*
+changewidth of login page
+*/
+.col-lg-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 35%  !important;
+    max-width: 50%;
+    justify-content: center !important;
+    margin-top: 10% !important;
+    margin-bottom: 10% !important
+}
+
+.form-margin {
+    -webkit-box-flex: 0;
+    flex: 0 0 35%  !important;
+    max-width: 40%;
+    justify-content: center !important;
+    margin-top: 10% !important;
+    background: rgb(196, 196, 196);
+}
+
+body {
+    background: rgb(207, 206, 196)
+}

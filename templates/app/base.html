@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap4.0.0..min.css'  %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}Validate | Phone {% endblock %}</title>
+</head>
+
+    <body>
+        {% block content %}
+            <div class="sidenav">
+                <div class="login-main-text">
+                    <h2>Phone Number<br>Registration</h2>
+                    <p>Register from here to access.</p>
+                </div>
+            </div>
+            <div class="main">
+                <div class="col-md-3 col-sm-12">
+                    <div class="login-form">
+                    <form>
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-black">Login</button>
+                        <button type="submit" class="btn btn-secondary">Register</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/todo.js' %}"></script>
+    </body>
+
+</html>
