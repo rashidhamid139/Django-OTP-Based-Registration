@@ -37,8 +37,12 @@
                             {{ field }}
                         </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary btn-customized mb-2">Login</button>
-                    <a href="{% url 'register:ajax-reset-password'  %}" class="mt-2" style="float: right;">Forgot Password?</a>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-success d-inline-block ">Login</button>
+                        <small><a href="{% url 'register:ajax-reset-password'  %}" class="nav-link d-inline-block">Forgot Password?</a></small>
+                    </div>
+                   
+    
                     <!-- End input fields -->
                 </form>
                 <!-- Form end -->

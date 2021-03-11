@@ -18,13 +18,16 @@
 
     <body>
         {% include 'register/navabr.html' %}
-        {% block content %}
+        <div class="flexContainer">
+            {% block content %}
 
-        {% endblock %}
-        {% block scripts %}
-            <script src="{% static 'js/bootstrap.min.js' %}"></script>
-            <script src="{% static 'js/jquery.min.js' %}"></script>
-        {% endblock %}
+            {% endblock %}
+            {% block scripts %}
+                <script src="{% static 'js/bootstrap.min.js' %}"></script>
+                <script src="{% static 'js/jquery.min.js' %}"></script>
+            {% endblock %}
+        </div>
     </body>
+
 
 </html>

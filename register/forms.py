@@ -4,17 +4,17 @@ from .models import User
 
 
 class RegisterPhone(forms.Form):
-    phone = forms.IntegerField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password"}))
+    phone = forms.IntegerField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password input-width"}))
 
 class ValidateOTPForm(forms.Form):
-    phone = forms.CharField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password"}))
-    otp = forms.IntegerField(label = 'OTP', widget=forms.TextInput(attrs={'class': "form-control password"}))
+    phone = forms.CharField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password input-width"}))
+    otp = forms.IntegerField(label = 'OTP', widget=forms.TextInput(attrs={'class': "form-control password input-width-otp"}))
 
 
 class RegisterUser(forms.ModelForm):
-    name = forms.CharField(label='Name', max_length=100 , widget=forms.TextInput(attrs={'class': "form-control password"}))
-    phone = forms.CharField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password"}))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': "form-control"}))
+    name = forms.CharField(label='Name', max_length=100 , widget=forms.TextInput(attrs={'class': "form-control password input-width"}))
+    phone = forms.CharField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password input-width"}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': "form-control input-width"}))
 
     class Meta:
         model = User
@@ -23,13 +23,13 @@ class RegisterUser(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password"}))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': "form-control"}))
+    phone = forms.CharField(label = 'Phone Number', widget=forms.TextInput(attrs={'class': "form-control password input-width"}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': "form-control input-width"}))
 
 
 class PasswordResetForm(forms.Form):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': "form-control"}))
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'class': "form-control"}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': "form-control input-width"}))
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'class': "form-control input-width"}))
 
 
 

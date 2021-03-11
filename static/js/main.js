@@ -18,11 +18,13 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: csrf_token
             },
             success: function(response){
-                alert(JSON.stringify(response))
                 if (response.status == false ){
                     switch( response.case) {
                         case "register":
-                            alert(response.url)
+                            if ( response.details == "User doen't exists, Please register") {
+                                $("#id_phone_number_warning").show().text( response.details)
+                                return false;
+                            }
                             window.location.href = response.url
                     }
                 }
@@ -41,7 +43,6 @@ $(document).ready(function() {
     $("#otp_number_form").on('submit', function(){
         var phone_number = $("#phone_number_form #id_phone_number").val().replaceAll('-', '')
         var otp_number = $("#otp_number_form #id_otp_value").val()
-        alert(otp_number)
         if ( otp_number == '' ){
             $("#otp_number_form #id_otp_value").removeClass('is-valid')
             $("#otp_number_form #id_otp_value").removeClass('was-validated')
@@ -58,12 +59,15 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: csrf_token
             },
             success: function(response){
-                alert(JSON.stringify(response))
                 if (response.status == false ){
                     switch( response.case) {
                         case "register":
                             alert(response.url)
                             window.location.href = response.url
+                        case "validate":
+                            if (response.details == "Incorrect OTP" ) {
+                                $("#id_otp_warning").show().text(response.details)
+                            }
                     }
                 }
                 else {

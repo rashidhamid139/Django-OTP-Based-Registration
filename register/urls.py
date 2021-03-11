@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('validate_otp/', views.validateOTP, name='validate-otp'),
     path('register_user', views.registerUser, name='register-user'),
-    path('password_reset/<str:phone>/', views.passwordReset, name='password-reset'),
+    path('password_reset/', views.passwordReset, name='password-reset'),
     #ajaxreset
     path('reset_pass_ajax/', views.resetPasswordAjax, name='ajax-reset-password'),
 

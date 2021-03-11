@@ -172,13 +172,18 @@ def resetPassword(request):
     passwordform = PasswordResetForm()
     return render(request, 'register/password_reset.html', {'phoneform': phoneform, 'passwordform': passwordform})
 
-def passwordReset(request, phone):
+def passwordReset(request):
     form = PasswordResetForm(request.POST or None)
+    phone = request.session.get('phone_number', None)
+    if phone is None:
+        return redirect('register:ajax-reset-password')
+    print(request.session.get('phone_number', 'no session found'), "checking session")
     if request.method == "POST":
         if form.is_valid():
             password1 = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']
             print(password1, password2)
+            del request.session['phone_number']
             if password1 and password2:
                 if password1 == password2:
                     user = User.objects.filter(phone__iexact=phone)
@@ -186,9 +191,9 @@ def passwordReset(request, phone):
                         user = user.first()
                         user.set_password(password1)
                         user.save()
-                        return redirect('register:homepage')
+                        return redirect('login')
             else:
-                messages.warning("passwords don't match")
+                messages.error("passwords don't match")
             
     return render(request, 'register/password_reset.html', {'form': form, 'phone_number': phone})
 
@@ -208,48 +213,52 @@ def resetPasswordAjax(request):
                     key = sent_otp(phone)
                     if old.exists():
                         old = old.first()
-                        if old.validated:
-                            if key:
-                                print(key)
-                                old.count = old.count + 1
-                                old.otp = key
-                                old.save()
-                                return JsonResponse({
-                                    'status': True,
-                                    'details': "OTP sent successfully",
-                                    'case': 'validate',
-                                    "url": ''
-                                }) 
+                        print(old)
+                        if key:
+                            print(key)
+                            old.count = old.count + 1
+                            old.otp = key
+                            old.save()
+                            return JsonResponse({
+                                'status': True,
+                                'details': "OTP sent successfully",
+                                'case': 'validate',
+                                "url": ''
+                            }) 
                     else:
-                        PhoneOTP.objects.create(phone=phone, otp=key)
+                        new = PhoneOTP.objects.create(phone=phone, otp=key)
+                        new.validated = True
+                        new.save()
+                        print(key)
+                        print("---")
                         return JsonResponse({
                                     'status': True,
                                     'details': "OTP sent successfully",
                                     'case': 'validate',
                                     "url": ''
-                                })
-
-                        
+                                })          
                 else:
                     return JsonResponse({
                         'status': False,
                         'details': "User doen't exists, Please register",
                         'case': 'register',
-                        'url': reverse('register:register-phone', args=('0', ))
+                        'url': reverse('register:register-phone' )
                     }, status=200)
             elif otp:
                 old = PhoneOTP.objects.filter(phone__iexact=phone)
+                print("old", old.exists())
                 if old.exists():
                     old = old.first()
                     old_otp = old.otp
                     if str(old_otp) == str(otp):
                         old.validated = True
                         old.save()
+                        request.session['phone_number'] = phone
                         return JsonResponse({
                             'status': True,
                             'details': "OTP validated Successfully",
                             "case": "validate",
-                            "url": reverse('register:password-reset', args=(phone, ))
+                            "url": reverse('register:password-reset' )
                         })
                     else:
                         return JsonResponse({
