@@ -12,6 +12,7 @@ urlpatterns = [
     path("login/", UserLogin, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('forgot_password', resetPassword, name='forgot-password'),
+    path('hotels/', include('hotels.urls', namespace='hotels'))
 
 ]
 

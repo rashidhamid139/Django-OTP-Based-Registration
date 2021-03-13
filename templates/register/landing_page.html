@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'register/base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap-alert.css' %}">
+{% endblock %}
+{% block content %}
+   <div class="row border-flex-outer ml-5">
+        <div class="border border-primary rounded-lg col-3 mr-5 ml-5">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/hotel.svg' %}" width="150" height="100" alt="">HOTELS</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </a>
+        </div>
+
+        <div class="border border-primary rounded-lg col-3 mr-5 ml-5">
+            <small>World Hello</small>
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/images.svg' %}" width="120" height="40" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </a>
+        </div>
+
+        <div class="border border-primary rounded-lg col-3 mr-5 ml-5">
+            <small>World Hello</small>
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/images.svg' %}" width="120" height="40" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </a>
+        </div>
+        
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
